@@ -1,0 +1,15 @@
+# Check Jenkins status
+sudo systemctl status jenkins
+
+# Open config file
+sudo gedit /var/lib/jenkins/config.xml
+
+# Change:
+# <useSecurity>true</useSecurity>
+# to
+# <useSecurity>false</useSecurity>
+
+# Restart Jenkins
+sudo systemctl restart jenkins
+
+----------------------------------------------------------------------------------------
