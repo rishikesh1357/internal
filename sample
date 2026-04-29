@@ -13,3 +13,35 @@ sudo gedit /var/lib/jenkins/config.xml
 sudo systemctl restart jenkins
 
 ----------------------------------------------------------------------------------------
+
+# Create project folder
+mkdir my-docker-app
+cd my-docker-app
+
+# Create Java file
+touch Main.java
+
+👉 Open Main.java and paste:
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World from Java in Docker!");
+    }
+}
+# Create Dockerfile
+touch Dockerfile
+
+👉 Open Dockerfile and paste:
+
+FROM openjdk:17
+WORKDIR /app
+COPY Main.java /app/
+RUN javac Main.java
+CMD ["java","Main"]
+# Build image
+sudo docker build -t java-app .
+
+# Run container
+sudo docker run java-app
+🔹 Output
+Hello, World from Java in Docker!
