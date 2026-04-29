@@ -45,3 +45,4 @@ sudo docker build -t java-app .
 sudo docker run java-app
 🔹 Output
 Hello, World from Java in Docker!
+sudo systemctl start docker
