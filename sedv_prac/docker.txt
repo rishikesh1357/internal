@@ -1,0 +1,85 @@
+Final Docker Practical Steps (Exam Ready)
+
+These steps match the Docker section in your PDF.
+
+1. Install Docker
+sudo apt update
+sudo apt install docker.io -y
+
+Check version:
+
+docker --version
+2. Start Docker
+sudo service docker start
+
+Check status:
+
+sudo service docker status
+3. Test Docker
+sudo docker run hello-world
+
+Expected:
+
+Hello from Docker!
+4. Create Working Directory
+mkdir ~/docker_prac
+cd ~/docker_prac
+5. Create Python File
+vi hello.py
+
+Add:
+
+print("hello world")
+
+Save:
+
+ESC
+:wq
+6. Create Dockerfile
+vi Dockerfile
+
+Add:
+
+FROM python:3.9
+
+WORKDIR /app
+
+COPY hello.py /app/
+
+CMD ["python3","hello.py"]
+
+Save:
+
+ESC
+:wq
+7. Build Docker Image
+sudo docker build -t python-app .
+
+Explanation:
+
+Part	Meaning
+build	create image
+-t	image name/tag
+python-app	custom image name
+.	current directory
+8. Check Images
+sudo docker images
+
+You should see:
+
+python-app
+python:3.9
+9. Run Container
+sudo docker run python-app
+
+Expected output:
+
+hello world
+10. View Running Containers
+sudo docker ps
+11. View All Containers
+sudo docker ps -a
+12. Remove Container
+sudo docker rm container_id
+13. Remove Image
+sudo docker rmi python-app

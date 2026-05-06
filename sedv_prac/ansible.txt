@@ -1,0 +1,66 @@
+Final Ansible + Nginx Lab Steps
+
+These are the exact practical steps you should remember for the exam.
+
+1. Install Ansible
+sudo apt update
+sudo apt install ansible -y
+
+Check version:
+
+ansible --version
+2. Create Ansible Directory
+mkdir ~/ansible
+cd ~/ansible
+3. Create Inventory File
+vi hosts.ini
+
+Add:
+
+[local]
+localhost ansible_connection=local
+
+Save:
+
+ESC
+:wq
+4. Create Playbook File
+vi local_playbook.yml
+
+Add this YAML:
+
+---
+- name: Install Nginx on Local Machine
+  hosts: local
+  become: yes
+
+  tasks:
+    - name: Ensure Nginx is installed
+      apt:
+        name: nginx
+        state: present
+
+Save:
+
+ESC
+:wq
+5. Run Playbook
+ansible-playbook -i hosts.ini local_playbook.yml -K
+
+It will ask:
+
+BECOME password:
+
+Enter your Ubuntu/WSL password.
+
+6. Successful Output
+
+You should see:
+
+PLAY RECAP
+localhost : ok=2 changed=1 failed=0
+7. Verify Nginx
+
+Check service:
+
+sudo service nginx status
